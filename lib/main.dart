@@ -1,6 +1,9 @@
 import 'package:collabapp/screens/Calender/calender_view.dart';
 import 'package:collabapp/screens/Home/home.dart';
 import 'package:collabapp/screens/Login/login.dart';
+import 'package:collabapp/screens/OTP/Phone.dart';
+import 'package:collabapp/screens/OTP/Verif.dart';
+import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event.dart';
@@ -13,8 +16,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Login(),
+    return MaterialApp(
+      home: MyVerify(),
     );
   }
 }

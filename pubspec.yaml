@@ -43,8 +43,10 @@ dev_dependencies:
 
   
   flutter_lints: ^2.0.0
+
   dependencies:
   firebase_auth: ^4.1.2
+  firebase_core: ^2.2.0
   cloud_firestore: ^4.0.5
   google_fonts: ^3.0.1
   pinput: ^2.2.16
@@ -70,6 +72,10 @@ flutter:
     - assets/images/calender.png
     - assets/images/pwd.png
     - assets/images/logout.png
+    - assets/images/otp.png
+    - assets/images/wt1.png
+    - assets/images/wt2.png
+    - assets/images/wt3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
