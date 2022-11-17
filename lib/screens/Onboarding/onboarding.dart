@@ -113,6 +113,7 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 
+//sarra test
   Container buildDot(int index, BuildContext context) {
     return Container(
       height: 10,
