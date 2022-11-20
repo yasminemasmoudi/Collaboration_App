@@ -29,32 +29,52 @@ class _projectHomeState extends State<projectHome> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Project Dashboard",
+                      "Project name",
                       style: GoogleFonts.openSans(
                           textStyle: const TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 18,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold)),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      "Project1",
+                      "Project manager",
                       style: GoogleFonts.openSans(
                           textStyle: const TextStyle(
                               color: Color.fromARGB(255, 226, 225, 228),
-                              fontSize: 12,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600)),
                     ),
+                    Text(
+                      "Project members list",
+                      style: GoogleFonts.openSans(
+                          textStyle: const TextStyle(
+                              color: Color.fromARGB(255, 226, 225, 228),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600)),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.only(
+                          left: 5.0, right: 5.0, bottom: 2.0, top: 2.0),
+                      height: 28.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(255, 255, 255, 0.5),
+                      ),
+                      child: Text(
+                        "Feb 2022 - Jan 2023",
+                        style: GoogleFonts.openSans(
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 226, 225, 228),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                    )
                   ],
                 ),
-                IconButton(
-                  alignment: Alignment.topCenter,
-                  icon: const Icon(Icons.notifications_none),
-                  onPressed: () {},
-                  color: Colors.white,
-                )
               ],
             ),
           ),

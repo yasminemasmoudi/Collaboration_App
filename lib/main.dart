@@ -6,7 +6,7 @@ import 'package:collabapp/screens/OTP/Verif.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/authenticate/authenticate.dart';
-import 'package:collabapp/screens/projectHome/prjecthome.dart';
+import 'package:collabapp/screens/projectHome/projecthome.dart';
 import 'package:collabapp/screens/projects/projectsView.dart';
 import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event.dart';
