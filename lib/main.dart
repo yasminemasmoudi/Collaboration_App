@@ -6,6 +6,8 @@ import 'package:collabapp/screens/OTP/Verif.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/draw.dart';
+import 'package:collabapp/screens/projectsView.dart';
+import 'package:collabapp/screens/reminders.dart';
 import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event.dart';
 import 'package:collabapp/screens/Calender/calender_view.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: projectsView(),
     );
   }
 }
