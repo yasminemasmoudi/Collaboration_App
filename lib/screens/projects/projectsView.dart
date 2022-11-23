@@ -132,3 +132,93 @@ class projectsView extends StatelessWidget {
     );
   }
 }
+
+///apartir de la ligne 66
+///
+ child: Column(
+                                  children: [
+                                    ListView.builder(
+                                        itemCount: 1,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Stack(children: <Widget>[
+                                            Container(
+                                                height: 130,
+                                                padding:
+                                                    const EdgeInsets.all(100),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                        Color.fromARGB(
+                                                            255, 184, 201, 225),
+                                                        Color.fromARGB(
+                                                            255, 215, 221, 234)
+                                                      ],
+                                                      begin: Alignment.topLeft,
+                                                      end: Alignment
+                                                          .bottomRight),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Color.fromARGB(
+                                                          255, 184, 201, 225),
+                                                      blurRadius: 12,
+                                                      offset: Offset(0, 6),
+                                                    ),
+                                                  ],
+                                                )),
+                                            Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 30.0,
+                                                            left: 12.0,
+                                                            right: 12.0,
+                                                            bottom: 9.0),
+                                                    child: Text(
+                                                      'project name',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily: 'Avenir',
+                                                          fontSize: 25,
+                                                          fontWeight:
+                                                              FontWeight.w900),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            12.0),
+                                                    child: Text(
+                                                      'project manager',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily: 'Avenir',
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  ),
+                                                ])
+                                          ]);
+                                        }),
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
