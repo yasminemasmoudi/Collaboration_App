@@ -8,7 +8,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  Map<DateTime, List<Event>> selectedEvents;
+  late Map<DateTime, List<Event>> selectedEvents;
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
@@ -39,9 +39,9 @@ class _CalendarState extends State<Calendar> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Colors.blue[900],
-          Colors.blue[800],
-          Colors.blue[400]
+          Colors.blue.shade900,
+          Colors.blue.shade800,
+          Colors.blue.shade400
         ])),
         child: Column(
           children: <Widget>[
@@ -162,7 +162,7 @@ class _CalendarState extends State<Calendar> {
 
                   } else {
                     if (selectedEvents[selectedDay] != null) {
-                      selectedEvents[selectedDay].add(
+                      selectedEvents[selectedDay]!.add(
                         Event(title: _eventController.text),
                       );
                     } else {
