@@ -15,21 +15,26 @@ class _reminders extends State<reminders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.primary,
-        appBar: AppBar(
-          title: Text('Reminders'),
-          centerTitle: true,
-        ),
-        body: ListWheelScrollView(
-            itemExtent: 250,
-            physics: FixedExtentScrollPhysics(),
-            perspective: 0.004,
-            children: [
-              BuildCard(),
-              BuildCard(),
-              BuildCard(),
-              BuildCard(),
-            ]));
+      backgroundColor: ColorManager.primary,
+      appBar: AppBar(
+        title: Text('Reminders'),
+        centerTitle: true,
+      ),
+      body: ListWheelScrollView(
+          itemExtent: 250,
+          physics: FixedExtentScrollPhysics(),
+          perspective: 0.004,
+          children: [
+            BuildCard(),
+            BuildCard(),
+            BuildCard(),
+            BuildCard(),
+          ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => temp(),
+      ),
+    );
   }
 }
 
@@ -75,4 +80,8 @@ BuildCard() {
       ),
     ),
   ));
+}
+
+void temp() {
+  print('Floating Action Button Clicked');
 }
