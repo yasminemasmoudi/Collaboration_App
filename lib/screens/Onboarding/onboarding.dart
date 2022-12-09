@@ -11,7 +11,7 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
   late PageController _controller;
-
+    bool isLogin = true;
   @override
   void initState() {
     _controller = PageController(initialPage: 0);
@@ -23,6 +23,8 @@ class _OnboardingState extends State<Onboarding> {
     _controller.dispose();
     super.dispose();
   }
+
+    void toggle() => setState(() => isLogin = !isLogin); // eni zitdha, taw nchoufouha
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const Login(),
+                      builder: (_) => Login(onClickedSignUp: toggle), // à vérifier
                     ),
                   );
                 }

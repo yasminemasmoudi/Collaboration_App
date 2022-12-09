@@ -1,7 +1,13 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:collabapp/screens/utils/utils.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  final Function() onClickedSignIn;
+  const Register({Key? key, required this.onClickedSignIn}) : super(key: key);
   @override
   State<Register> createState() => _Register();
 }
@@ -11,7 +17,7 @@ class _Register extends State<Register> {
   var email = TextEditingController();
   var pass = TextEditingController();
   var repass = TextEditingController();
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,13 +100,11 @@ class _Register extends State<Register> {
                                       labelText: "E-mail",
                                       contentPadding: EdgeInsets.all(10.0),
                                     ),
-                                    validator: (value) {
-                                      if(value!.isEmpty) {
-                                        return "Enter Valid E-mail";
-                                      } else{
-                                        return null;
-                                      }
-                                    }
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                                    validator: (email) =>
+                                      email != null && !EmailValidator.validate(email)
+                                        ? 'Enter a valid email'
+                                        : null,
                                 ),
                                 TextFormField(
                                   controller: pass,
@@ -110,13 +114,10 @@ class _Register extends State<Register> {
                                       labelText: "Password",
                                       contentPadding: EdgeInsets.all(10.0),
                                   ),
-                                    validator: (value) {
-                                      if(value!.isEmpty) {
-                                        return "Enter Valid Password";
-                                      } else{
-                                        return null;
-                                      }
-                                    }
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                    validator: (value) => value != null && value.length <6
+                                      ? 'Enter min. 6 characters'
+                                      : null,
                                 ),
                                 TextFormField(
                                   controller: repass,
@@ -141,12 +142,7 @@ class _Register extends State<Register> {
                           height: 25,
                         ),
                         ElevatedButton(
-                          onPressed: () {
-                            if(_formKey.currentState!.validate())
-                            {
-
-                            }
-                          },
+                          onPressed: signUp ,
                           style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               shape: RoundedRectangleBorder(
@@ -155,6 +151,26 @@ class _Register extends State<Register> {
                               textStyle: const TextStyle(color: Colors.blueAccent)),
                           child: const Text('Register'),
                         ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                          RichText(
+                            text: TextSpan(
+                                style: TextStyle(color: Colors.grey),
+                                text: 'Already have an account? ',
+                                children: [
+                                  TextSpan(
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = widget.onClickedSignIn,
+                                      text: 'Log In',
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          color: Theme.of(context).colorScheme.secondary
+                                      )
+                                  )
+                                ]
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -166,5 +182,17 @@ class _Register extends State<Register> {
       ),
     );
   }
-
+  Future signUp() async{
+    final isValid = _formKey.currentState!.validate();
+    if (!isValid) return ;
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email.text.trim(),
+        password: pass.text.trim(),
+      );
+    } on FirebaseAuthException catch(e) {
+        print(e);
+        //Utils.showSnackBar(e.message);
+      }
+  }
 }

@@ -1,10 +1,19 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:collabapp/screens/Login/fade_animation.dart';
-import '../../resources/color_manager.dart';
+import 'package:collabapp/resources/color_manager.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:collabapp/screens/ForgotPasswordPage/ForgotPasswordPage.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  final VoidCallback onClickedSignUp;
+  const Login({Key? key, required this.onClickedSignUp,}) : super(key: key);
+  @override
+  State<Login> createState() => _Login();
+}
 
+class _Login extends State<Login> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,33 +21,29 @@ class Login extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          ColorManager.button,
-          ColorManager.primary,
-          ColorManager.blue
-        ])),
+              ColorManager.button,
+              ColorManager.primary,
+              ColorManager.blue
+            ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Center(
-              child: Image(image: AssetImage('assets/images/logoapp.png')),
+              child: Image(image: AssetImage('assets/logo.png')), //change the path in github
             ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
-                  FadeAnimation(
-                      1,
                       Text(
                         "Welcome Back",
                         style: TextStyle(color: Colors.white, fontSize: 30),
-                      )),
-                  FadeAnimation(
-                      1.3,
+                      ),
                       Text(
                         "Sign in to continue",
                         style: TextStyle(color: Colors.white, fontSize: 14),
-                      )),
+                      ),
                 ],
               ),
             ),
@@ -57,8 +62,6 @@ class Login extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        FadeAnimation(
-                            1.4,
                             Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -78,11 +81,11 @@ class Login extends StatelessWidget {
                                             bottom: BorderSide(
                                                 color: Color.fromARGB(
                                                     255, 232, 232, 232)))),
-                                    child: const TextField(
+                                    child: TextField(
+                                      controller: emailController,
                                       decoration: InputDecoration(
-                                          hintText: "Email or Username",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey),
+                                          labelText: "Email or Username",
+                                          contentPadding: EdgeInsets.all(10.0),
                                           border: InputBorder.none),
                                     ),
                                   ),
@@ -93,64 +96,81 @@ class Login extends StatelessWidget {
                                             bottom: BorderSide(
                                                 color: Color.fromARGB(
                                                     255, 255, 255, 255)))),
-                                    child: const TextField(
+                                    child: TextField(
+                                      controller: passwordController,
+                                      obscureText: true,
+                                      obscuringCharacter: "*",
                                       decoration: InputDecoration(
-                                          hintText: "Enter your password",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey),
+                                          labelText: "Enter your password",
+                                          contentPadding: EdgeInsets.all(10.0),
                                           border: InputBorder.none),
                                     ),
                                   ),
                                 ],
                               ),
-                            )),
+                            ),
                         const SizedBox(
                           height: 30,
                         ),
-                        FadeAnimation(
-                            1.5,
-                            const Text(
-                              "Forgot Password?",
-                              style: TextStyle(color: Colors.grey),
-                            )),
+                            GestureDetector(
+                              child :Text(
+                                'Forgot Password?',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Theme.of(context).colorScheme.secondary
+                                ),
+                              ),
+                              onTap:() => Navigator.of(context).push(MaterialPageRoute(
+                                builder : (context) => ForgotPasswordPage(),
+                              )),
+                            ),
                         const SizedBox(
                           height: 15,
                         ),
-                        FadeAnimation(
-                            1.6,
-                            Container(
-                              height: 50,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 50),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: Colors.blue[900]),
-                              child: const Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            )),
+                        ElevatedButton(
+                          onPressed: signIn ,
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 15.0,
+                              textStyle: const TextStyle(color: Colors.blueAccent)),
+                          child: const Text('Login'),
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
-                        FadeAnimation(
-                            1.7,
+                            RichText(
+                              text: TextSpan(
+                                style: TextStyle(color: Colors.grey),
+                                text: 'No account ? ',
+                                children: [
+                                  TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = widget.onClickedSignUp,
+                                    text: 'Sign Up',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Theme.of(context).colorScheme.secondary
+                                    )
+                                  )
+                                ]
+                              ),
+                            ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                             const Text(
                               "Continue with social media",
                               style: TextStyle(color: Colors.grey),
-                            )),
+                            ),
                         const SizedBox(
                           height: 20,
                         ),
                         Row(
                           children: <Widget>[
                             Expanded(
-                              child: FadeAnimation(
-                                  1.8,
+                              child:
                                   Container(
                                     height: 50,
                                     decoration: BoxDecoration(
@@ -164,14 +184,12 @@ class Login extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                  )),
-                            ),
+                                  ),),
                             const SizedBox(
                               width: 30,
                             ),
                             Expanded(
-                              child: FadeAnimation(
-                                  1.9,
+                              child:
                                   Container(
                                     height: 50,
                                     decoration: BoxDecoration(
@@ -185,7 +203,7 @@ class Login extends StatelessWidget {
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                  )),
+                                  ),
                             )
                           ],
                         )
@@ -199,5 +217,17 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future signIn() async
+  {
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+  }
+    on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }
