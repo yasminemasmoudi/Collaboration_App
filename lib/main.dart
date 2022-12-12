@@ -6,6 +6,7 @@ import 'package:collabapp/screens/OTP/Verif.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/authenticate/authenticate.dart';
+import 'package:collabapp/screens/projectHome/projectdashboard.dart';
 import 'package:collabapp/screens/projectHome/projecthome.dart';
 import 'package:collabapp/screens/projects/projectsView.dart';
 import 'package:collabapp/screens/reminders/reminders.dart';
@@ -21,8 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: reminders(),
+      home: projectsView(),
     );
   }
 }
-

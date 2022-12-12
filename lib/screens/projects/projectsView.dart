@@ -37,7 +37,10 @@ class projectsView extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(45),
                           topRight: Radius.circular(45))),
-                  child: projects(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: projects(),
+                  ),
                 ),
               )
             ],
