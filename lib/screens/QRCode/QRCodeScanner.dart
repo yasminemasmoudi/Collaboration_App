@@ -1,6 +1,7 @@
 import 'dart:async';
-//i removed the error but you should see another tutoriel, https://www.youtube.com/watch?v=-QCrf5EytSc watch this video !
-import 'package:barcode_widget/barcode_widget.dart';
+//i removed the error
+
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,11 +32,11 @@ class _ScanState extends State<ScanScreen> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: RaisedButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    splashColor: Colors.blueGrey,
-                    onPressed: scan,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => ScanScreen()));
+                    },
                     child: const Text('START CAMERA SCAN')),
               ),
               Padding(
@@ -52,21 +53,14 @@ class _ScanState extends State<ScanScreen> {
 
   Future scan() async {
     try {
-      String barcode = await BarcodeScanner.scan();
+      String barcode = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
       setState(() => this.barcode = barcode);
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          this.barcode = 'The user did not grant the camera permission!';
-        });
-      } else {
-        setState(() => this.barcode = 'Unknown error: $e');
-      }
+    } on PlatformException {
+      setState(() => this.barcode = "Failed");
     } on FormatException {
       setState(() => this.barcode =
           'null (User returned using the "back"-button before scanning anything. Result)');
-    } catch (e) {
-      setState(() => this.barcode = 'Unknown error: $e');
     }
   }
 }

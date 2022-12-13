@@ -57,7 +57,9 @@ class projectsView extends StatelessWidget {
               //Create (Alert==POPUP)
               builder: (context) => AlertDialog(
                 title: Text("What ever you want !"),
-                content: Text("merci saif !"),
+                content: TextField(
+                  decoration: InputDecoration(hintText: 'Enter your name'),
+                ),
                 actions: [
                   TextButton(
                       onPressed: () {
