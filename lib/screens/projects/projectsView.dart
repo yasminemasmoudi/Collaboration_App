@@ -1,3 +1,5 @@
+import 'dart:js';
+import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import '../projects/projects.dart';
 
@@ -48,7 +50,26 @@ class projectsView extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () => temp(),
+          onPressed: () {
+            //the function that show the pop up !
+            showDialog(
+              context: context,
+              //Create (Alert==POPUP)
+              builder: (context) => AlertDialog(
+                title: Text("What ever you want !"),
+                content: Text("merci saif !"),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        //the function that remove the pop up !
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("ok"))
+                ],
+              ),
+            );
+            ;
+          },
         ),
       ),
     );
