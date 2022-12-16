@@ -33,10 +33,7 @@ class _ScanState extends State<ScanScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => ScanScreen()));
-                    },
+                    onPressed: () => scan(),
                     child: const Text('START CAMERA SCAN')),
               ),
               Padding(
