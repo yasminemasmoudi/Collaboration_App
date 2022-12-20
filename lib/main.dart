@@ -10,10 +10,14 @@ import 'package:collabapp/screens/projectsView.dart';
 import 'package:collabapp/screens/reminders.dart';
 import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
-import 'package:collabapp/screens/Calender/calender_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -21,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: EventListScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

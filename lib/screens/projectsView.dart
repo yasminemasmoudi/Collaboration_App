@@ -70,14 +70,14 @@ class projectsView extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         gradient: LinearGradient(
-                                            colors: [
+                                            colors: const [
                                               Color.fromARGB(
                                                   255, 184, 201, 225),
                                               Color.fromARGB(255, 215, 221, 234)
                                             ],
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight),
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             color: Color.fromARGB(
                                                 255, 184, 201, 225),
@@ -90,9 +90,9 @@ class projectsView extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      children: <Widget>[
+                                      children: const <Widget>[
                                         Padding(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               top: 30.0,
                                               left: 12.0,
                                               right: 12.0,
@@ -107,7 +107,7 @@ class projectsView extends StatelessWidget {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.all(12.0),
+                                          padding: EdgeInsets.all(12.0),
                                           child: Text(
                                             'project manager',
                                             style: TextStyle(
