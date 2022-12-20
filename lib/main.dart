@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:collabapp/screens/Calender/calender_view.dart';
 import 'package:collabapp/screens/Home/home.dart';
 import 'package:collabapp/screens/Login/login.dart';
@@ -17,14 +15,7 @@ import 'package:flutter/material.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: "",
-    appId: "1:826791224015:android:980ef2006c91e7c19c4dba",
-    messagingSenderId: "",
-    projectId: "collabapp-1567f",
-  ));
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -34,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: EventListScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

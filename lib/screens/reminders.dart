@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:collabapp/resources/color_manager.dart';
 
@@ -15,12 +14,12 @@ class _reminders extends State<reminders> {
     return Scaffold(
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
-          title: Text('Reminders'),
+          title: const Text('Reminders'),
           centerTitle: true,
         ),
         body: ListWheelScrollView(
             itemExtent: 250,
-            physics: FixedExtentScrollPhysics(),
+            physics: const FixedExtentScrollPhysics(),
             perspective: 0.004,
             children: [
               BuildCard(),
@@ -31,6 +30,7 @@ class _reminders extends State<reminders> {
   }
 }
 
+// ignore: non_constant_identifier_names
 BuildCard() {
   return (Center(
     child: Container(
@@ -38,11 +38,11 @@ BuildCard() {
       width: 400,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
+        gradient: const LinearGradient(colors: [
           Color.fromARGB(255, 112, 166, 242),
           Color.fromARGB(255, 196, 211, 245)
         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color.fromARGB(255, 238, 241, 245),
             blurRadius: 12,
@@ -54,10 +54,10 @@ BuildCard() {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                   top: 30.0, left: 12.0, right: 12.0, bottom: 9.0),
               child: Text(
                 'Do not forget the meeting on Monday',

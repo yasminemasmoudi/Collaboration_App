@@ -24,9 +24,8 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-plugins {
-    id 'com.google.gms.google-services'
-}
+apply plugin: 'com.google.gms.google-services'
+
 
 
 android {
@@ -55,7 +54,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        minSdkVersion 21
+        minSdkVersion 19
         multiDexEnabled true
     }
 
@@ -79,6 +78,4 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     // Add the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics'
-
-
 }
