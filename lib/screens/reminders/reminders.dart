@@ -14,25 +14,49 @@ class reminders extends StatefulWidget {
 class _reminders extends State<reminders> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.primary,
-      appBar: AppBar(
-        title: Text('Reminders'),
-        centerTitle: true,
-      ),
-      body: ListWheelScrollView(
-          itemExtent: 250,
-          physics: FixedExtentScrollPhysics(),
-          perspective: 0.004,
-          children: [
-            BuildCard(),
-            BuildCard(),
-            BuildCard(),
-            BuildCard(),
-          ]),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => temp(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: ColorManager.primary,
+        appBar: AppBar(
+          title: Text('Reminders'),
+          centerTitle: true,
+        ),
+        body: ListWheelScrollView(
+            itemExtent: 250,
+            physics: FixedExtentScrollPhysics(),
+            perspective: 0.004,
+            children: [
+              BuildCard(),
+              BuildCard(),
+              BuildCard(),
+              BuildCard(),
+            ]),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            //the function that show the pop up !
+            showDialog(
+              context: context,
+              //Create (Alert==POPUP)
+              builder: (context) => AlertDialog(
+                title: Text("Add a reminder !"),
+                content: TextField(
+                  decoration: InputDecoration(hintText: 'Don' 't forget ...'),
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        //the function that remove the pop up !
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("ok"))
+                ],
+              ),
+            );
+            ;
+          },
+        ),
       ),
     );
   }

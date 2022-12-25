@@ -31,7 +31,8 @@ environment:
 dependencies: 
   qr_code_scanner: ^1.0.1
   snippet_coder_utils: ^1.0.12
-js: ^0.6.3
+  js: ^0.6.3
+  hive: ^1.0.0
 
     
   
