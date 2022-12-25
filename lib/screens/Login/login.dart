@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:collabapp/resources/color_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:collabapp/screens/ForgotPasswordPage/ForgotPasswordPage.dart';
+import 'package:collabapp/screens/utils/utils.dart';
+
 
 class Login extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -228,6 +230,7 @@ class _Login extends State<Login> {
   }
     on FirebaseAuthException catch (e) {
       print(e);
+      Utils.showSnackBar(e.message);
     }
   }
 }

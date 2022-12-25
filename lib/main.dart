@@ -1,21 +1,9 @@
-import 'package:collabapp/screens/calendar/calender_view.dart';
-import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/Login/login.dart';
-import 'package:collabapp/screens/OTP/Phone.dart';
-import 'package:collabapp/screens/OTP/Verif.dart';
-import 'package:collabapp/screens/Onboarding/onboarding.dart';
-import 'package:collabapp/screens/Splash/splashscreen.dart';
-import 'package:collabapp/screens/wrapper.dart';
-import 'package:collabapp/screens/Events/event.dart';
-import 'package:collabapp/screens/calendar/calender_view.dart';
-import 'package:flutter/material.dart';
-import 'screens/AuthPage/AuthPage.dart';
-import 'screens/ChangePass/ChangePass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
+import 'screens/Test/Test.dart';
+import 'screens/AuthPage/AuthPage.dart';
+import 'screens/utils/utils.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +12,7 @@ Future main() async {
     messagingSenderId: "880888729591",
     projectId: "collab-eaa34",),);
   runApp(MaterialApp(
+    scaffoldMessengerKey: Utils.messengerKey,
     home: MainPage(),
   ));
 }
@@ -35,7 +24,7 @@ class MainPage extends StatelessWidget{
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData){
-           return Onboarding(); //just for test, we will change it after to HomePage
+           return Test(); //just for test, we will change it after to HomePage
         }
         else
         {

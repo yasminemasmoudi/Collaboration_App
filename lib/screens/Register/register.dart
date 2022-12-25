@@ -192,7 +192,7 @@ class _Register extends State<Register> {
       );
     } on FirebaseAuthException catch(e) {
         print(e);
-        //Utils.showSnackBar(e.message);
+        Utils.showSnackBar(e.message);
       }
   }
 }
