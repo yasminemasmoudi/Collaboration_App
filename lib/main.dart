@@ -15,7 +15,6 @@ import 'package:collabapp/screens/Events/event.dart';
 import 'package:collabapp/screens/Calender/calender_view.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/QRCode/QRCodeScanner.dart';
-//import 'package:collabapp/screens/QRCode/readqr.dart';
 
 void main() => runApp(const MyApp());
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ScanScreen(),
+      home: projectsView(),
     );
   }
 }

@@ -53,8 +53,10 @@ class _ScanState extends State<ScanScreen> {
       String barcode = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
       setState(() => this.barcode = barcode);
+      print('it works');
     } on PlatformException {
       setState(() => this.barcode = "Failed");
+      print('it failed');
     } on FormatException {
       setState(() => this.barcode =
           'null (User returned using the "back"-button before scanning anything. Result)');
