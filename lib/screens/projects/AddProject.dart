@@ -7,12 +7,12 @@ import './projectBox.dart';
 
 import 'project.dart';
 
-class RecipeFormScreen extends StatefulWidget {
+class ProjectFormScreen extends StatefulWidget {
   @override
-  _RecipeFormScreenState createState() => _RecipeFormScreenState();
+  _ProjectFormScreenState createState() => _ProjectFormScreenState();
 }
 
-class _RecipeFormScreenState extends State<RecipeFormScreen> {
+class _ProjectFormScreenState extends State<ProjectFormScreen> {
   final formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -30,7 +30,7 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Nouveau projet"),
+        title: Text("New project"),
       ),
       body: Form(
           key: formKey,
@@ -81,13 +81,13 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                 child: TextFormField(
                   controller: ownerController,
                   decoration: InputDecoration(
-                      labelText: 'Username',
+                      labelText: 'members',
                       border: OutlineInputBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0)))),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please enter an username';
+                      return 'Please the number of members';
                     }
                     return null;
                   },
