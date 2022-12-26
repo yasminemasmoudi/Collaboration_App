@@ -98,13 +98,13 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      project projectt = project(
+                      project Project = project(
                           titleController.value.text,
                           ownerController.value.text,
                           descriptionController.value.text,
                           new Random().nextInt(100));
 
-                      projectBox.box.put(project.key(), project);
+                      projectBox.box.put(Project.key(), project);
                       Navigator.pop(context);
                     }
                   },
