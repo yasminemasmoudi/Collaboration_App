@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:collabapp/resources/color_manager.dart';
 import 'griddashboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,6 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       backgroundColor: ColorManager.primary,
       body: Column(
@@ -40,11 +44,11 @@ class _HomeState extends State<Home> {
                       height: 4,
                     ),
                     Text(
-                      "Yasmine Masmoudi",
+                      user.email!,
                       style: GoogleFonts.openSans(
                           textStyle: const TextStyle(
                               color: Color.fromARGB(255, 226, 225, 228),
-                              fontSize: 12,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600)),
                     ),
                   ],

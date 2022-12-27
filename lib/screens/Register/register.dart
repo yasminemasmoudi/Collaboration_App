@@ -36,7 +36,7 @@ class _Register extends State<Register> {
               height: 30,
             ),
             const Center(
-              child: Image(image: AssetImage('assets/logo.png')),
+              child: Image(image: AssetImage('assets/images/logoapp.png')),
             ),
             Padding(
               padding: const EdgeInsets.all(10),

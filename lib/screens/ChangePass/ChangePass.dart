@@ -30,7 +30,7 @@ class _ChangePass extends State<ChangePass> {
               height: 30,
             ),
             const Center(
-              child: Image(image: AssetImage('assets/logo.png')),
+              child: Image(image: AssetImage('assets/images/logoapp.png')),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -141,6 +141,21 @@ class _ChangePass extends State<ChangePass> {
                               elevation: 15.0,
                               textStyle: const TextStyle(color: Colors.blueAccent)),
                           child: const Text('Change Password'),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        ElevatedButton(
+                          onPressed: (){Navigator.pop(context);},
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 15.0,
+                              textStyle: const TextStyle(
+                                  color: Colors.blueAccent)),
+                          child: const Text('Back to Home'),
                         ),
                       ],
                     ),

@@ -1,26 +1,28 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:collabapp/resources/color_manager.dart';
+import 'package:collabapp/screens/Login/login.dart';
+import 'package:collabapp/screens/AuthPage/AuthPage.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
+class Logout extends StatefulWidget {
+  const Logout({Key? key}) : super(key: key);
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  State<Logout> createState() => _Logout();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage>{
-  final formKey=GlobalKey<FormState>();
-  final emailController = TextEditingController();
+class _Logout extends State<Logout> {
+  String name="";
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-              Colors.blue.shade900,
-              Colors.blue.shade800,
-              Colors.blue.shade400
+              ColorManager.button,
+              ColorManager.primary,
+              ColorManager.blue
             ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,9 +38,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
-                  (
-                      Text(
-                        "Reset Password",
+                  Center(
+                      child: Text(
+                        "Logout",
                         style: TextStyle(color: Colors.white, fontSize: 30),
                       )),
                 ],
@@ -59,14 +61,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>{
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          'Receive an email to\nreset your password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
                         Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
@@ -77,58 +71,54 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>{
                                     blurRadius: 20,
                                     offset: Offset(0, 10))
                               ]),
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              children: <Widget>[
-                                TextFormField(
-                                  controller: emailController,
-                                  decoration: const InputDecoration(
-                                    labelText: "Email",
-                                    contentPadding: EdgeInsets.all(10.0),
-                                      border: InputBorder.none,
-                                  ),
-                                  autovalidateMode: AutovalidateMode
-                                      .onUserInteraction,
-                                  validator: (email) =>
-                                  email != null &&
-                                      !EmailValidator.validate(email)
-                                      ? 'Enter a valid email'
-                                      : null,
-                                ),
-                              ],
-                            ),
-                          ),
+                        ),
+                        Text(
+                          'You are signed in as',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          user.email!,
+                          style: TextStyle(fontSize: 20),
                         ),
                         const SizedBox(
                           height: 25,
                         ),
-                        ElevatedButton(
-                          onPressed: resetPassword,
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              elevation: 15.0,
-                              textStyle: const TextStyle(
-                                  color: Colors.blueAccent)),
-                          child: const Text('Reset Password'),
+                        Text(
+                          'Would you like to logout ? ',
+                          style: TextStyle(fontSize: 16),
                         ),
                         const SizedBox(
                           height: 25,
                         ),
                         ElevatedButton(
                           onPressed: (){Navigator.pop(context);},
+                          // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                           style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 20),
+                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
                               elevation: 15.0,
-                              textStyle: const TextStyle(
-                                  color: Colors.blueAccent)),
-                          child: const Text('Back to Login Page'),
+                              textStyle: const TextStyle(color: Colors.blueAccent)),
+                          child: const Text('Back to Home'),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                          },
+                          // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              elevation: 15.0,
+                              textStyle: const TextStyle(color: Colors.blueAccent)),
+                          child: const Text('Sign Out'),
                         ),
                       ],
                     ),
@@ -141,14 +131,4 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>{
       ),
     );
   }
-  Future resetPassword() async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-          email: emailController.text.trim());
-    } on FirebaseAuthException catch (e)
-    {
-      print(e);
-    }
-}
-
 }

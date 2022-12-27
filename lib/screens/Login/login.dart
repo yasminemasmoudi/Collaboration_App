@@ -31,7 +31,7 @@ class _Login extends State<Login> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Center(
-              child: Image(image: AssetImage('assets/logo.png')), //change the path in github
+              child: Image(image: AssetImage('assets/images/logoapp.png')), //change the path in github
             ),
             Padding(
               padding: const EdgeInsets.all(20),
