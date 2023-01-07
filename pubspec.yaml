@@ -48,6 +48,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   table_calendar: ^3.0.0
   pinput: ^2.2.16
+  dropdown_button2: ^1.9.2
+  fluttertoast: ^8.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter  
