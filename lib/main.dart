@@ -1,8 +1,9 @@
 import 'package:collabapp/screens/Calender/calender_view.dart';
 import 'package:collabapp/screens/Home/home.dart';
 import 'package:collabapp/screens/Login/login.dart';
-import 'package:collabapp/screens/OTP/Phone.dart';
-import 'package:collabapp/screens/OTP/Verif.dart';
+import 'package:collabapp/screens/OTP/Verification_otp.dart';
+import 'package:collabapp/screens/OTP/function.dart';
+import 'package:collabapp/screens/OTP/phone_otp.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/draw.dart';
@@ -11,6 +12,7 @@ import 'package:collabapp/screens/reminders.dart';
 import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 Future main() async {
@@ -27,12 +29,19 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
       debugShowCheckedModeBanner: false,
+      home: StreamBuilder<User?>(
+        stream: _auth.authStateChanges(),
+        builder: (context, snapshot) {
+          return snapshot.data == null ? const Phone() : const Home();
+        },
+      ),
     );
   }
 }
