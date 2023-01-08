@@ -1,4 +1,3 @@
-import 'package:collabapp/screens/Calender/calender_view.dart';
 import 'package:collabapp/screens/Home/home.dart';
 import 'package:collabapp/screens/Login/login.dart';
 import 'package:collabapp/screens/OTP/Verification_otp.dart';
@@ -9,7 +8,6 @@ import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/draw.dart';
 import 'package:collabapp/screens/projectsView.dart';
 import 'package:collabapp/screens/reminders.dart';
-import 'package:collabapp/screens/wrapper.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,12 +34,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder<User?>(
+      home: SplashLoading(),
+      /*StreamBuilder<User?>(
         stream: _auth.authStateChanges(),
         builder: (context, snapshot) {
           return snapshot.data == null ? Phone() : const Home();
         },
-      ),
+      ),*/
     );
   }
 }

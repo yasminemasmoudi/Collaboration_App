@@ -1,4 +1,5 @@
 import 'package:collabapp/resources/color_manager.dart';
+import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/Onboarding/content_model.dart';
 import 'package:collabapp/screens/Login/login.dart';
@@ -88,7 +89,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const Login(),
+                      builder: (_) => Login(),
                     ),
                   );
                 }
