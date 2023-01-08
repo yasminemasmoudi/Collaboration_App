@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder<User?>(
         stream: _auth.authStateChanges(),
         builder: (context, snapshot) {
-          return snapshot.data == null ? const Phone() : const Home();
+          return snapshot.data == null ? Phone() : const Home();
         },
       ),
     );
