@@ -109,19 +109,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-     
-       
-
-     - family: Mulish
-       fonts:
-        - asset: assets/fonts/Mulish-Bold.ttf
-      
-      
-     - family: AbhayaLibre
-       fonts:
-        - asset: assets/fonts/AbhayaLibre-Regular.ttf
-       
+  
       
      
   #
