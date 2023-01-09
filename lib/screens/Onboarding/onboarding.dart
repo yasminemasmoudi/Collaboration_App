@@ -2,6 +2,7 @@ import 'package:collabapp/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/Onboarding/content_model.dart';
 import 'package:collabapp/screens/Login/login.dart';
+import 'package:collabapp/screens/x.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -25,8 +26,7 @@ class _OnboardingState extends State<Onboarding> {
     super.dispose();
   }
 
-  void toggle() =>
-      setState(() => isLogin = !isLogin); // eni zitdha, taw nchoufouha
+  void toggle() => setState(() => isLogin = !isLogin);
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Login(onClickedSignUp: toggle),
+                      builder: (_) => MainPage(),
                     ),
                   );
                 }

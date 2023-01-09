@@ -1,3 +1,4 @@
+import 'package:collabapp/screens/Register/register.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/resources/color_manager.dart';
@@ -120,14 +121,16 @@ class _Login extends State<Login> {
                         ),
                         GestureDetector(
                           child: Text(
-                            'Forgot Password?',
+                            'Sign Up',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
                           onTap: () =>
                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ForgotPasswordPage(),
+                            builder: (context) => Register(
+                              onClickedSignIn: () {},
+                            ),
                           )),
                         ),
                         const SizedBox(
