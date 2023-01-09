@@ -89,7 +89,9 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Login(),
+                      builder: (_) => Login(
+                        onClickedSignUp: () {},
+                      ),
                     ),
                   );
                 }

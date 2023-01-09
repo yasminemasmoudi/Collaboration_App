@@ -25,10 +25,10 @@ class _Register extends State<Register> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-              Colors.blue.shade900,
-              Colors.blue.shade800,
-              Colors.blue.shade400
-            ])),
+          Colors.blue.shade900,
+          Colors.blue.shade800,
+          Colors.blue.shade400
+        ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -43,11 +43,10 @@ class _Register extends State<Register> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
-                  (
-                      Text(
-                        "Let's Register",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      )),
+                  (Text(
+                    "Let's Register",
+                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  )),
                 ],
               ),
             ),
@@ -81,43 +80,45 @@ class _Register extends State<Register> {
                             child: Column(
                               children: <Widget>[
                                 TextFormField(
-                                  controller: user,
+                                    controller: user,
                                     decoration: const InputDecoration(
                                       labelText: "Username",
                                       contentPadding: EdgeInsets.all(10.0),
                                     ),
                                     validator: (value) {
-                                      if(value!.isEmpty) {
+                                      if (value!.isEmpty) {
                                         return "Enter Valid Username";
-                                      } else{
+                                      } else {
                                         return null;
                                       }
-                                    }
-                                ),
+                                    }),
                                 TextFormField(
                                   controller: email,
-                                    decoration: const InputDecoration(
-                                      labelText: "E-mail",
-                                      contentPadding: EdgeInsets.all(10.0),
-                                    ),
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    validator: (email) =>
-                                      email != null && !EmailValidator.validate(email)
-                                        ? 'Enter a valid email'
-                                        : null,
+                                  decoration: const InputDecoration(
+                                    labelText: "E-mail",
+                                    contentPadding: EdgeInsets.all(10.0),
+                                  ),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (email) => email != null &&
+                                          !EmailValidator.validate(email)
+                                      ? 'Enter a valid email'
+                                      : null,
                                 ),
                                 TextFormField(
                                   controller: pass,
                                   obscureText: true,
                                   obscuringCharacter: "*",
                                   decoration: const InputDecoration(
-                                      labelText: "Password",
-                                      contentPadding: EdgeInsets.all(10.0),
+                                    labelText: "Password",
+                                    contentPadding: EdgeInsets.all(10.0),
                                   ),
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    validator: (value) => value != null && value.length <6
-                                      ? 'Enter min. 6 characters'
-                                      : null,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (value) =>
+                                      value != null && value.length < 6
+                                          ? 'Enter min. 6 characters'
+                                          : null,
                                 ),
                                 TextFormField(
                                   controller: repass,
@@ -126,12 +127,11 @@ class _Register extends State<Register> {
                                   decoration: const InputDecoration(
                                       labelText: "Retype Password",
                                       contentPadding: EdgeInsets.all(10.0),
-                                      border: InputBorder.none
-                                  ),
-                                  validator: (value){
+                                      border: InputBorder.none),
+                                  validator: (value) {
                                     return pass.text == value
                                         ? null
-                                        : "Passwords don't match. Please re-enter your new password" ;
+                                        : "Passwords don't match. Please re-enter your new password";
                                   },
                                 ),
                               ],
@@ -142,35 +142,36 @@ class _Register extends State<Register> {
                           height: 25,
                         ),
                         ElevatedButton(
-                          onPressed: signUp ,
+                          onPressed: signUp,
                           style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 20),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
                               elevation: 15.0,
-                              textStyle: const TextStyle(color: Colors.blueAccent)),
+                              textStyle:
+                                  const TextStyle(color: Colors.blueAccent)),
                           child: const Text('Register'),
                         ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                          RichText(
-                            text: TextSpan(
-                                style: TextStyle(color: Colors.grey),
-                                text: 'Already have an account? ',
-                                children: [
-                                  TextSpan(
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = widget.onClickedSignIn,
-                                      text: 'Log In',
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          color: Theme.of(context).colorScheme.secondary
-                                      )
-                                  )
-                                ]
-                            ),
-                          ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                              style: TextStyle(color: Colors.grey),
+                              text: 'Already have an account? ',
+                              children: [
+                                TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = widget.onClickedSignIn,
+                                    text: 'Log In',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary))
+                              ]),
+                        ),
                       ],
                     ),
                   ),
@@ -182,17 +183,18 @@ class _Register extends State<Register> {
       ),
     );
   }
-  Future signUp() async{
+
+  Future signUp() async {
     final isValid = _formKey.currentState!.validate();
-    if (!isValid) return ;
+    if (!isValid) return;
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email.text.trim(),
         password: pass.text.trim(),
       );
-    } on FirebaseAuthException catch(e) {
-        print(e);
-        Utils.showSnackBar(e.message);
-      }
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+    }
   }
 }
