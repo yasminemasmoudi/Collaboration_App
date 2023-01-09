@@ -1,17 +1,9 @@
-import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/Login/login.dart';
-import 'package:collabapp/screens/OTP/Verification_otp.dart';
-import 'package:collabapp/screens/OTP/function.dart';
-import 'package:collabapp/screens/OTP/phone_otp.dart';
-import 'package:collabapp/screens/Onboarding/onboarding.dart';
-import 'package:collabapp/screens/Splash/splashscreen.dart';
-import 'package:collabapp/screens/draw.dart';
-import 'package:collabapp/screens/projectsView.dart';
-import 'package:collabapp/screens/reminders.dart';
-import 'package:collabapp/screens/Events/event_list.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'screens/AuthPage/AuthPage.dart';
+import 'screens/utils/utils.dart';
+import 'screens/Home/home.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,24 +15,24 @@ Future main() async {
       projectId: "collabapp-1567f",
     ),
   );
-  runApp(MyApp());
+  runApp(MaterialApp(
+    scaffoldMessengerKey: Utils.messengerKey,
+    debugShowCheckedModeBanner: false,
+    home: MainPage(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-  final _auth = FirebaseAuth.instance;
-
+class MainPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashLoading(),
-      /*StreamBuilder<User?>(
-        stream: _auth.authStateChanges(),
+  Widget build(BuildContext context) => Scaffold(
+          body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          return snapshot.data == null ? Phone() : const Home();
+          if (snapshot.hasData) {
+            return Home(); //just for test, we will change it after to HomePage
+          } else {
+            return AuthPage();
+          }
         },
-      ),*/
-    );
-  }
+      ));
 }
