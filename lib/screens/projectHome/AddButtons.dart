@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:ui';
 
 import 'package:collabapp/resources/color_manager.dart';
 import 'package:flutter/material.dart';
@@ -17,38 +18,114 @@ class AddButtons extends StatelessWidget {
       children: [
         Hero(
           tag: "createproject_btn",
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ProjectFormScreen();
-                  },
-                ),
-              );
-            },
-            child: Text(
-              "Create Project".toUpperCase(),
-            ),
-          ),
+          child: Center(
+              child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 13, 71, 161),
+                              Color.fromARGB(255, 21, 101, 192),
+                              Color.fromARGB(255, 66, 165, 245)
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ProjectFormScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  child: Text(
+                                    'Create Project',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
         ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return ScanScreen();
-                },
-              ),
-            );
-          },
-          style: ElevatedButton.styleFrom(elevation: 0),
-          child: Text(
-            "Join Project".toUpperCase(),
-          ),
+        const SizedBox(height: 90),
+        Hero(
+          tag: "createproject_btn",
+          child: Center(
+              child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 13, 71, 161),
+                              Color.fromARGB(255, 21, 101, 192),
+                              Color.fromARGB(255, 66, 165, 245)
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ScanScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: Center(
+                            child: Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  child: Text(
+                                    'Join Project',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))),
         ),
       ],
     );

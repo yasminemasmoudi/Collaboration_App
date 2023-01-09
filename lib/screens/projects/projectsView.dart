@@ -13,7 +13,12 @@ class projectsView extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(color: Colors.blue),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+          Color.fromARGB(255, 13, 71, 161),
+          Color.fromARGB(255, 21, 101, 192),
+          Color.fromARGB(255, 66, 165, 245)
+        ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -25,9 +30,11 @@ class projectsView extends StatelessWidget {
                   SizedBox(
                     height: 50,
                   ),
-                  Text(
-                    "Projects",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  Center(
+                    child: Text(
+                      "Projects",
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
                   ),
                 ],
               ),

@@ -31,20 +31,15 @@ BuildCard() {
     ),
     child: Container(
       height: 150,
-      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 40.0, right: 40.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 112, 166, 242),
-          Color.fromARGB(255, 196, 211, 245)
+          Color.fromARGB(255, 13, 71, 161),
+          Color.fromARGB(255, 21, 101, 192),
+          Color.fromARGB(255, 66, 165, 245)
         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(255, 238, 241, 245),
-            blurRadius: 12,
-            offset: Offset(0, 6),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(10),
+        boxShadow: [],
+        borderRadius: BorderRadius.circular(30),
       ),
       child: Padding(
         padding: EdgeInsets.all(12),
@@ -56,7 +51,7 @@ BuildCard() {
               child: Text(
                 'project1',
                 style: TextStyle(
-                    color: Color.fromARGB(255, 24, 21, 21),
+                    color: Colors.white,
                     fontFamily: 'Avenir',
                     fontSize: 25,
                     fontWeight: FontWeight.w900),
@@ -67,12 +62,41 @@ BuildCard() {
               child: Text(
                 'chef de projet',
                 style: TextStyle(
-                    color: Color.fromARGB(255, 24, 21, 21),
+                    color: Colors.white,
                     fontFamily: 'Avenir',
                     fontSize: 18,
                     fontWeight: FontWeight.w700),
               ),
             ),
+            const SizedBox(height: 10),
+            Center(
+              child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Date_Debut',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Avenir',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Center(
+                      child: Text(
+                        'Date_Fin',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Avenir',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ]),
+            )
           ],
         ),
       ),

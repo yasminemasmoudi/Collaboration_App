@@ -10,22 +10,19 @@ class AddHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(color: Colors.blue),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  SizedBox(
-                    height: 50,
-                  ),
-                ],
-              ),
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+            Color.fromARGB(255, 13, 71, 161),
+            Color.fromARGB(255, 21, 101, 192),
+            Color.fromARGB(255, 66, 165, 245)
+          ])),
+          child: Column(children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
+            const SizedBox(height: 100),
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
@@ -46,9 +43,7 @@ class AddHome extends StatelessWidget {
                 ),
               ),
             )
-          ],
-        ),
-      ),
+          ])),
     );
   }
 }

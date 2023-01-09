@@ -7,7 +7,7 @@ class ProjectDashboard extends StatelessWidget {
   Items item1 = Items(title: "Tasks", img: "assets/images/tasks.png");
 
   Items item2 = Items(
-    title: "Chat",
+    title: "White Board",
     img: "assets/images/chat.png",
   );
   Items item3 = Items(
@@ -15,7 +15,7 @@ class ProjectDashboard extends StatelessWidget {
     img: "assets/images/Reminders.png",
   );
   Items item4 = Items(
-    title: "Members",
+    title: "QR Code",
     img: "assets/images/membres.png",
   );
 
