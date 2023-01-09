@@ -1,4 +1,6 @@
+import 'package:collabapp/model/event.dart';
 import 'package:collabapp/resources/color_manager.dart';
+import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/ChangePass/ChangePass.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +22,7 @@ class GridDashboard extends StatelessWidget {
   Items item3 = Items(
     title: "Events",
     img: "assets/images/events.png",
-    screen: ChangePass(),
+    screen: EventListScreen(),
   );
   Items item4 = Items(
     title: "Calender",

@@ -1,3 +1,4 @@
+import 'package:collabapp/screens/Register/register.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/resources/color_manager.dart';
@@ -148,21 +149,17 @@ class _Login extends State<Login> {
                         const SizedBox(
                           height: 20,
                         ),
-                        RichText(
-                          text: TextSpan(
-                              style: TextStyle(color: Colors.grey),
-                              text: 'No account ? ',
-                              children: [
-                                TextSpan(
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = widget.onClickedSignUp,
-                                    text: 'Sign Up',
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary))
-                              ]),
+                        GestureDetector(
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: Theme.of(context).colorScheme.secondary),
+                          ),
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Register(),
+                          )),
                         ),
                         const SizedBox(
                           height: 20,
