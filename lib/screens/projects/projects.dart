@@ -31,8 +31,7 @@ BuildCard() {
     ),
     child: Container(
       height: 150,
-      padding:
-          const EdgeInsets.only(top: 2.0, left: 10.0, right: 10.0, bottom: 2.0),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
           Color.fromARGB(255, 112, 166, 242),
