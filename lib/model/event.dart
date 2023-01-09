@@ -15,7 +15,7 @@ class Event {
 
 List<Event> EventList = [
   Event(
-      title: 'Flutter Worshop',
+      title: 'Flutter Workshop',
       date: '20, Oct 09:00 AM',
       imageUrl:
           'https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png',
