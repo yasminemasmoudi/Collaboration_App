@@ -1,5 +1,3 @@
-import 'package:collabapp/screens/Onboarding/onboarding.dart';
-import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
