@@ -107,6 +107,7 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                       projectBox.box.put(Project.key(), project);
                       Navigator.pop(context);
                     }
+                    
                   },
                   child: Text('Save'),
                 ),
