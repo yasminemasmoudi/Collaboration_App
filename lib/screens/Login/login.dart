@@ -121,14 +121,16 @@ class _Login extends State<Login> {
                         ),
                         GestureDetector(
                           child: Text(
-                            'Forgot Password?',
+                            'Sign Up',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
                           onTap: () =>
                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ForgotPasswordPage(),
+                            builder: (context) => Register(
+                              onClickedSignIn: () {},
+                            ),
                           )),
                         ),
                         const SizedBox(
@@ -149,19 +151,21 @@ class _Login extends State<Login> {
                         const SizedBox(
                           height: 20,
                         ),
-                        GestureDetector(
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Register(
-                              onClickedSignIn: () {},
-                            ),
-                          )),
+                        RichText(
+                          text: TextSpan(
+                              style: TextStyle(color: Colors.grey),
+                              text: 'No account ? ',
+                              children: [
+                                TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = widget.onClickedSignUp,
+                                    text: 'Sign Up',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary))
+                              ]),
                         ),
                         const SizedBox(
                           height: 20,
