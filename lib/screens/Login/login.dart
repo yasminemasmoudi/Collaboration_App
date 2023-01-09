@@ -158,7 +158,9 @@ class _Login extends State<Login> {
                           ),
                           onTap: () =>
                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Register(),
+                            builder: (context) => Register(
+                              onClickedSignIn: () {},
+                            ),
                           )),
                         ),
                         const SizedBox(

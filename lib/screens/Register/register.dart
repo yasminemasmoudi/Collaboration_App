@@ -1,3 +1,4 @@
+import 'package:collabapp/screens/Login/login.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -155,22 +156,21 @@ class _Register extends State<Register> {
                         const SizedBox(
                           height: 25,
                         ),
-                        RichText(
-                          text: TextSpan(
-                              style: TextStyle(color: Colors.grey),
-                              text: 'Already have an account? ',
-                              children: [
-                                TextSpan(
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = widget.onClickedSignIn,
-                                    text: 'Log In',
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary))
-                              ]),
-                        ),
+                        GestureDetector(
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                            ),
+                            onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => Login(
+                                      onClickedSignUp: () {},
+                                    ),
+                                  ),
+                                )),
                       ],
                     ),
                   ),
