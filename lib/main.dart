@@ -1,17 +1,9 @@
-import 'package:collabapp/screens/Calender/calender_view.dart';
-import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/Login/login.dart';
-import 'package:collabapp/screens/OTP/Phone.dart';
-import 'package:collabapp/screens/OTP/Verif.dart';
-import 'package:collabapp/screens/Onboarding/onboarding.dart';
-import 'package:collabapp/screens/Splash/splashscreen.dart';
-import 'package:collabapp/screens/draw.dart';
-import 'package:collabapp/screens/projectsView.dart';
-import 'package:collabapp/screens/reminders.dart';
-import 'package:collabapp/screens/wrapper.dart';
-import 'package:collabapp/screens/Events/event_list.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'screens/AuthPage/AuthPage.dart';
+import 'screens/utils/utils.dart';
+import 'screens/Home/home.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,16 +15,23 @@ Future main() async {
       projectId: "collabapp-1567f",
     ),
   );
-  runApp(MyApp());
+  runApp(MaterialApp(
+    scaffoldMessengerKey: Utils.messengerKey,
+    home: MainPage(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Home(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+          body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Home(); //just for test, we will change it after to HomePage
+          } else {
+            return AuthPage();
+          }
+        },
+      ));
 }
