@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-Class Body extends StatelessWidget{
+/*Class Body extends StatelessWidget{
   @override
   Widget build(BuildContext context ) {
     return Column (
@@ -38,5 +38,5 @@ class RecipeBundleCard extends StatelessWidget {
         ],))
     )
   }
-}
+}*/
 

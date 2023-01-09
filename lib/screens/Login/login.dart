@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:collabapp/screens/Login/fade_animation.dart';
+import 'package:collabapp/resources/fade_animation.dart';
 import '../../resources/color_manager.dart';
 
 class Login extends StatelessWidget {
