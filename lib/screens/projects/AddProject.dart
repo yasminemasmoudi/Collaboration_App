@@ -11,6 +11,7 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 import '../projectHome/projecthome.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 var project_title;
 var project_description;
@@ -106,7 +107,7 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                         lastDate: DateTime(2101));
                     if (pickeddate != null) {
                       setState(() {
-                       _date.text =
+                        _date.text =
                             DateFormat('yyyy-MM-dd').format(pickeddate);
                       });
                     }

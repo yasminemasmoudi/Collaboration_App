@@ -48,6 +48,7 @@ dependencies:
   hive: ^2.2.3
   fluttertoast: ^8.1.2
   dropdown_button2: ^1.9.2
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
