@@ -3,6 +3,7 @@ import 'package:collabapp/screens/OTP/Verification_otp.dart';
 import 'package:collabapp/screens/OTP/function.dart';
 import 'package:collabapp/screens/OTP/phone_otp.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
+import 'package:collabapp/screens/Reminders/reminders.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/draw.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Phone(),
+      home: Reminders(),
       /*StreamBuilder<User?>(
         stream: _auth.authStateChanges(),
         builder: (context, snapshot) {
