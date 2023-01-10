@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/promodoro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -71,8 +70,7 @@ class _VerificationOtpState extends State<VerificationOtp> {
     loading = true;
     setState(() {});
     Navigator.of(context).pop();
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     print("verification successfully completed");
   }
 
