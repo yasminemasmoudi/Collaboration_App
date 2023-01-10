@@ -1,14 +1,12 @@
 import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/Login/login.dart';
 import 'package:collabapp/screens/OTP/Verification_otp.dart';
 import 'package:collabapp/screens/OTP/function.dart';
 import 'package:collabapp/screens/OTP/phone_otp.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';
 import 'package:collabapp/screens/draw.dart';
-import 'package:collabapp/screens/projectsView.dart';
-import 'package:collabapp/screens/reminders.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
+import 'package:collabapp/screens/promodoro.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

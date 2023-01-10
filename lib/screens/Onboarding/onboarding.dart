@@ -1,7 +1,7 @@
 import 'package:collabapp/resources/color_manager.dart';
+import 'package:collabapp/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/Onboarding/content_model.dart';
-import 'package:collabapp/screens/Login/login.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -88,9 +88,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Login(
-                        onClickedSignUp: () {},
-                      ),
+                      builder: (_) => Home(),
                     ),
                   );
                 }
