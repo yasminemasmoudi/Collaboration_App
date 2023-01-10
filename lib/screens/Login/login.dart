@@ -121,18 +121,16 @@ class _Login extends State<Login> {
                         ),
                         GestureDetector(
                           child: Text(
-                            'Sign Up',
+                            'Forgot Password ?',
                             style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 color: Theme.of(context).colorScheme.secondary),
                           ),
                           onTap: () =>
                               Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Register(
-                              onClickedSignIn: () {},
+                            builder: (context) => ForgotPasswordPage(),
                             ),
                           )),
-                        ),
                         const SizedBox(
                           height: 15,
                         ),

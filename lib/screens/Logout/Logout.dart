@@ -110,6 +110,9 @@ class _Logout extends State<Logout> {
                         ElevatedButton(
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
+                            Navigator.of(context).pushReplacement( //hedhi mta3 otp
+                                MaterialPageRoute(
+                                    builder: (context) => Login(onClickedSignUp: () {  },)));
                           },
                           // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                           style: ElevatedButton.styleFrom(

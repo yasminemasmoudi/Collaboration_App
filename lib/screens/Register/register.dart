@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:collabapp/screens/utils/utils.dart';
+import 'package:collabapp/screens/OTP/phone_otp.dart';
+
 
 class Register extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -85,13 +87,11 @@ class _Register extends State<Register> {
                                       labelText: "Username",
                                       contentPadding: EdgeInsets.all(10.0),
                                     ),
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "Enter Valid Username";
-                                      } else {
-                                        return null;
-                                      }
-                                    }),
+                                    validator: (value) =>
+                                    value != null && value.length < 4
+                                        ? 'Enter min. 4 characters'
+                                        : null,
+                                    ),
                                 TextFormField(
                                   controller: email,
                                   decoration: const InputDecoration(
@@ -192,6 +192,9 @@ class _Register extends State<Register> {
         email: email.text.trim(),
         password: pass.text.trim(),
       );
+      /*Navigator.of(context).pushReplacement( //hedhi mta3 otp
+          MaterialPageRoute(
+              builder: (context) => Phone()));*/
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);

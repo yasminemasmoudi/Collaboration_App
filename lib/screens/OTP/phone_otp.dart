@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:collabapp/screens/OTP/function.dart';
 import 'package:collabapp/screens/OTP/verification_otp.dart';
+import 'package:collabapp/resources/color_manager.dart';
 
 class Phone extends StatefulWidget {
   const Phone({Key? key}) : super(key: key);
@@ -24,9 +25,9 @@ class _PhoneState extends State<Phone> {
         setState(() {});
         Navigator.of(context).push(MaterialPageRoute(
             builder: (c) => VerificationOtp(
-                  verificationId: verificationId,
-                  phoneNumber: phoneNumber,
-                )));
+              verificationId: verificationId,
+              phoneNumber: phoneNumber,
+            )));
       }, onAutoVerify: (v) async {
         await _auth.signInWithCredential(v);
         Navigator.of(context).pop();
@@ -68,7 +69,7 @@ class _PhoneState extends State<Phone> {
                     phoneNumber = value.completeNumber;
                   },
                   decoration:
-                      const InputDecoration(border: OutlineInputBorder()),
+                  const InputDecoration(border: OutlineInputBorder()),
                 ),
                 const SizedBox(
                   height: 20,
@@ -82,12 +83,12 @@ class _PhoneState extends State<Phone> {
                       onPressed: loading ? null : sendOtpCode,
                       child: loading
                           ? const CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(Colors.white),
-                            )
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      )
                           : const Text(
-                              'Send the code',
-                              style: TextStyle(fontSize: 20),
-                            ),
+                        'Send the code',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 )

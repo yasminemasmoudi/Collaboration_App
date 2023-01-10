@@ -1,8 +1,11 @@
 import 'package:collabapp/resources/color_manager.dart';
+import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/Onboarding/content_model.dart';
 import 'package:collabapp/screens/Login/login.dart';
-import 'package:collabapp/screens/x.dart';
+
+import '../../main.dart';
+import '../AuthPage/AuthPage.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -12,7 +15,6 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
   late PageController _controller;
-  bool isLogin = true;
 
   @override
   void initState() {
@@ -25,8 +27,6 @@ class _OnboardingState extends State<Onboarding> {
     _controller.dispose();
     super.dispose();
   }
-
-  void toggle() => setState(() => isLogin = !isLogin);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _OnboardingState extends State<Onboarding> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 contents.length,
-                (index) => buildDot(index, context),
+                    (index) => buildDot(index, context),
               ),
             ),
           ),
@@ -92,7 +92,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => MainPage(),
+                      builder: (_) => MyApp()
                     ),
                   );
                 }

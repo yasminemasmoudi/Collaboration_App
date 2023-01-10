@@ -18,11 +18,11 @@ Future main() async {
   );
   runApp(MaterialApp(
     scaffoldMessengerKey: Utils.messengerKey,
-    home: MainPage(),
+    home: MyApp(),
   ));
 }
 
-class MainPage extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
           body: StreamBuilder<User?>(

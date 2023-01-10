@@ -70,9 +70,7 @@ class _VerificationOtpState extends State<VerificationOtp> {
     loading = true;
     setState(() {});
     Navigator.of(context).pop();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Home()),
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()),
     );
     print("verification successfully completed");
   }
@@ -138,12 +136,12 @@ class _VerificationOtpState extends State<VerificationOtp> {
                           : onVerifySmsCode,
                       child: loading
                           ? const CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(Colors.white),
-                            )
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
+                      )
                           : const Text(
-                              'Verify',
-                              style: TextStyle(fontSize: 20),
-                            ),
+                        'Verify',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 )

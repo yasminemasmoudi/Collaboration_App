@@ -1,4 +1,5 @@
 import 'package:collabapp/screens/Home/home.dart';
+import 'package:collabapp/screens/AuthPage/AuthPage.dart';
 import 'package:collabapp/screens/Login/login.dart';
 import 'package:collabapp/screens/OTP/Verification_otp.dart';
 import 'package:collabapp/screens/OTP/function.dart';
@@ -10,6 +11,7 @@ import 'package:collabapp/screens/Events/event_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:collabapp/screens/utils/utils.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,10 +23,28 @@ Future main() async {
       projectId: "collabapp-1567f",
     ),
   );
-  runApp(MyApp());
+  runApp(MaterialApp(
+    scaffoldMessengerKey: Utils.messengerKey,
+    home: MyApp(), // look at line 91 //Onboarding()
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Home();
+          } else {
+            return AuthPage();
+          }
+        },
+      ));
+}
+
+/*class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   final _auth = FirebaseAuth.instance;
 
@@ -41,4 +61,4 @@ class MyApp extends StatelessWidget {
       ),*/
     );
   }
-}
+}*/
