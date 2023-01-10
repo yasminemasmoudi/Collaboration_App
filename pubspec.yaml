@@ -42,6 +42,11 @@ dependencies:
   email_validator: ^2.1.17
   table_calendar: ^3.0.8
   firebase_database: ^10.0.9
+  flutter_barcode_scanner: ^2.0.0
+  qr_code_scanner: ^1.0.1
+  hive: ^2.2.3
+  fluttertoast: ^8.1.2
+  dropdown_button2: ^1.9.2
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +87,13 @@ flutter:
     - assets/images/wt1.png
     - assets/images/wt2.png
     - assets/images/wt3.png
+    - assets/images/chat.png
+    - assets/images/Reminders.png
+    - assets/images/tasks.png
+    - assets/images/membres.png
+    - assets/images/timer.png
+    - assets/images/board.png
+    - assets/images/team.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

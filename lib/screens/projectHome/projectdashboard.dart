@@ -1,47 +1,48 @@
-import 'package:collabapp/model/event.dart';
 import 'package:collabapp/resources/color_manager.dart';
-import 'package:collabapp/screens/Events/event_list.dart';
-import 'package:collabapp/screens/projects/projectsView.dart';
+import 'package:collabapp/screens/QRCode/QRCodeScanner.dart';
+import 'package:collabapp/screens/Reminders/reminders.dart';
+import 'package:collabapp/screens/Task_Test/views/home.dart';
+import 'package:collabapp/screens/draw.dart';
+import 'package:collabapp/screens/members.dart';
+import 'package:collabapp/screens/promodoro.dart';
 import 'package:flutter/material.dart';
-import 'package:collabapp/screens/ChangePass/ChangePass.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:collabapp/screens/calendar/calender_view.dart';
-import 'package:collabapp/screens/Logout/Logout.dart';
 
-class GridDashboard extends StatelessWidget {
+import 'package:google_fonts/google_fonts.dart';
+
+class ProjectDashboard extends StatelessWidget {
   Items item1 = Items(
-    title: "Projects",
-    img: "assets/images/projects.png",
-    screen: projectsView(),
+    title: "Tasks",
+    img: "assets/images/tasks.png",
+    screen: HomeTask(),
   );
+
   Items item2 = Items(
-    title: "Chat",
-    img: "assets/images/teams.png",
-    screen: ChangePass(),
+    title: "White Board",
+    img: "assets/images/board.png",
+    screen: DrawingBoard(),
   );
   Items item3 = Items(
-    title: "Events",
-    img: "assets/images/events.png",
-    screen: EventListScreen(),
+    title: "Reminders",
+    img: "assets/images/Reminders.png",
+    screen: reminders(),
   );
   Items item4 = Items(
-    title: "Calender",
-    img: "assets/images/calender.png",
-    screen: Calendar(),
+    title: "QR Code",
+    img: "assets/images/membres.png",
+    screen: ScanScreen(),
   );
   Items item5 = Items(
-    title: "Change Password",
-    img: "assets/images/pwd.png",
-    screen: ChangePass(),
+    title: "Promodoro",
+    img: "assets/images/timer.png",
+    screen: HomeScreen(),
   );
   Items item6 = Items(
-    title: "Logout",
-    img: "assets/images/logout.png",
-    screen: Logout(),
+    title: "Members",
+    img: "assets/images/team.png",
+    screen: Members(),
   );
 
-  GridDashboard({super.key});
-
+  ProjectDashboard({super.key});
   @override
   Widget build(BuildContext context) {
     List<Items> myList = [item1, item2, item3, item4, item5, item6];
@@ -55,12 +56,11 @@ class GridDashboard extends StatelessWidget {
           mainAxisSpacing: 18,
           children: myList.map((data) {
             return GestureDetector(
-              onTap: () {
-                Navigator.push(context, new MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) {
-                  return data.screen;
-                }));
-              },
+              onTap: (() => Navigator.push(context,
+                      new MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) {
+                    return data.screen;
+                  }))),
               child: Container(
                 decoration: BoxDecoration(
                     color: ColorManager.lightblue,
@@ -102,5 +102,6 @@ class Items {
   String title;
   String img;
   Widget screen;
+
   Items({required this.title, required this.img, required this.screen});
 }
