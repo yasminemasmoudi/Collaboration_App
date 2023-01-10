@@ -88,11 +88,9 @@ class _DrawingBoardState extends State<DrawingBoard> {
                   onChanged: (val) => setState(() => strokeWidth = val),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {
-                    // Code to execute when button is pressed
-                  },
-                  icon: Icon(Icons.clear, size: 30),
-                  label: Text("Clear"),
+                  onPressed: () => setState(() => drawingPoints = []),
+                  icon: Icon(Icons.clear),
+                  label: Text("Clear Board"),
                 )
               ],
             ),
