@@ -22,6 +22,16 @@ class _DrawingBoardState extends State<DrawingBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: [
           GestureDetector(
@@ -78,9 +88,11 @@ class _DrawingBoardState extends State<DrawingBoard> {
                   onChanged: (val) => setState(() => strokeWidth = val),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => setState(() => drawingPoints = []),
-                  icon: Icon(Icons.clear),
-                  label: Text("Clear Board"),
+                  onPressed: () {
+                    // Code to execute when button is pressed
+                  },
+                  icon: Icon(Icons.clear, size: 30),
+                  label: Text("Clear"),
                 )
               ],
             ),

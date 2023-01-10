@@ -1,11 +1,20 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './projectBox.dart';
-
+import 'package:intl/intl_browser.dart';
 import 'project.dart';
+import 'dart:core';
+import 'package:http/http.dart' as http;
+import '../projectHome/projecthome.dart';
+import 'dart:convert';
+
+var project_title;
+var project_description;
+var project_members;
 
 class ProjectFormScreen extends StatefulWidget {
   @override
@@ -13,6 +22,31 @@ class ProjectFormScreen extends StatefulWidget {
 }
 
 class _ProjectFormScreenState extends State<ProjectFormScreen> {
+  Future CreateProject(
+      BuildContext context, title, description, members) async {
+    var url = "http://localhost:5000/api/project";
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, double>{
+          'title': title,
+          'description': description,
+          'members': members
+        }),
+      );
+      if (response.statusCode == 200) {
+        print(response.body);
+      } else {
+        throw Exception('${response.body}');
+      }
+    } catch (er) {
+      throw Exception(er);
+    }
+  }
+
   final formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -26,6 +60,7 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
     super.dispose();
   }
 
+  TextEditingController _date = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +84,50 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please enter a title';
+                    } else {
+                      project_title = value;
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: TextField(
+                  controller: _date,
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.calendar_today_rounded),
+                      labelText: "Select Date"),
+                  onTap: () async {
+                    DateTime? pickeddate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2101));
+                    if (pickeddate != null) {
+                      setState(() {
+                       _date.text =
+                            DateFormat('yyyy-MM-dd').format(pickeddate);
+                      });
+                    }
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
+                child: TextFormField(
+                  controller: ownerController,
+                  decoration: InputDecoration(
+                      labelText: 'members',
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0)))),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please the number of members';
+                    } else {
+                      project_members = value;
                     }
                     return null;
                   },
@@ -70,24 +149,8 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please enter a description';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
-                child: TextFormField(
-                  controller: ownerController,
-                  decoration: InputDecoration(
-                      labelText: 'members',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)))),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please the number of members';
+                    } else {
+                      project_description = value;
                     }
                     return null;
                   },
@@ -97,6 +160,8 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    print("hello?");
+
                     if (formKey.currentState!.validate()) {
                       project Project = project(
                           titleController.value.text,
@@ -105,8 +170,9 @@ class _ProjectFormScreenState extends State<ProjectFormScreen> {
                           new Random().nextInt(100));
 
                       projectBox.box.put(Project.key(), project);
-                      Navigator.pop(context);
                     }
+                    CreateProject(context, 'ss', 'ss', 'ss');
+                    Navigator.pop(context);
                   },
                   child: Text('Save'),
                 ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import '../projectHome/projecthome.dart';
+import 'dart:convert';
+
+List data = [];
 
 class projects extends StatefulWidget {
   const projects({super.key});
@@ -9,22 +12,48 @@ class projects extends StatefulWidget {
   State<projects> createState() => _projects();
 }
 
+Future<List> getData() async {
+  final response =
+      await http.get(Uri.parse('http://localhost:5000/api/projects'));
+  data = json.decode(response.body);
+  return data;
+}
+
 class _projects extends State<projects> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        itemExtent: 250,
-        physics: FixedExtentScrollPhysics(),
-        children: [
-          BuildCard(context),
-          BuildCard(context),
-          BuildCard(context),
-          BuildCard(context),
-        ]);
+    return FutureBuilder<List<dynamic>>(
+      future: getData(),
+      builder: ((context, snapshot) {
+        if (snapshot.data == null) {
+          return Center(
+            child: const CircularProgressIndicator(),
+          );
+        } else {
+          return ListView.builder(
+            padding: EdgeInsets.only(top: 40, bottom: 40),
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: BuildCard(context, index),
+              );
+            },
+          );
+        }
+      }),
+    );
+
+    /*ListView(itemExtent: 250, physics: FixedExtentScrollPhysics(), children: [
+      BuildCard(context),
+      BuildCard(context),
+      BuildCard(context),
+      BuildCard(context),
+    ]);*/
   }
 }
 
-Widget BuildCard(BuildContext context) {
+Widget BuildCard(BuildContext context, int index) {
   return (Center(
       child: Padding(
     padding: EdgeInsets.only(
@@ -56,7 +85,7 @@ Widget BuildCard(BuildContext context) {
             children: [
               Center(
                 child: Text(
-                  'project1',
+                  data[index]["title"],
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir',

@@ -19,6 +19,12 @@ class _reminders extends State<reminders> {
       child: Scaffold(
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: Text('Reminders'),
           centerTitle: true,
         ),
