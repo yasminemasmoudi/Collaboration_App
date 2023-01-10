@@ -1,11 +1,10 @@
 import 'package:collabapp/model/event.dart';
 import 'package:collabapp/resources/color_manager.dart';
 import 'package:collabapp/screens/Events/event_list.dart';
+import 'package:collabapp/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:collabapp/screens/ChangePass/ChangePass.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:collabapp/screens/Logout/Logout.dart';
-
 import '../calender/calender_event.dart';
 
 class GridDashboard extends StatelessWidget {
@@ -34,17 +33,12 @@ class GridDashboard extends StatelessWidget {
     img: "assets/images/pwd.png",
     screen: ChangePass(),
   );
-  Items item6 = Items(
-    title: "Logout",
-    img: "assets/images/logout.png",
-    screen: Logout(),
-  );
 
   GridDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Items> myList = [item1, item2, item3, item4, item5, item6];
+    List<Items> myList = [item1, item2, item3, item4, item5];
     var color = ColorManager.button;
     return Flexible(
       child: GridView.count(

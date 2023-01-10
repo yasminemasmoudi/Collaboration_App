@@ -32,12 +32,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder<User?>(
+      home: Phone(),
+      /*StreamBuilder<User?>(
         stream: _auth.authStateChanges(),
         builder: (context, snapshot) {
           return snapshot.data == null ? Phone() : const Home();
         },
-      ),
+      ),*/
     );
   }
 }
