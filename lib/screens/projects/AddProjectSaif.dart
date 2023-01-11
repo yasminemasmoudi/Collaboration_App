@@ -1,9 +1,10 @@
 import 'package:collabapp/screens/projects/projectsView.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<Project> createProject(
   BuildContext context,
@@ -12,8 +13,15 @@ Future<Project> createProject(
   String member,
 ) async {
   try {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    var user = auth.currentUser;
+    var url;
+    url = 'https://backendmobile-tje6.onrender.com/api/projects';
+    if (user != null) {
+      url = url + "/" + user.uid;
+    }
     final response = await http.post(
-      Uri.parse('http://localhost:5000/api/projects'),
+      Uri.parse(url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -23,6 +31,7 @@ Future<Project> createProject(
         'member': member,
       }),
     );
+
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.

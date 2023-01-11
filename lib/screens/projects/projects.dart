@@ -1,9 +1,62 @@
+import 'package:collabapp/screens/projects/projectsView.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../projectHome/projecthome.dart';
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 
 List data = [];
+
+Future DeleteProject(
+  BuildContext context,
+  String id,
+) async {
+  try {
+    var url = 'https://backendmobile-tje6.onrender.com/api/projects/';
+    url = url + id;
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      // return User.fromJson(jsonDecode(response.body));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => projectsView()));
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception(response.body);
+    }
+  } catch (e) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(
+            e.toString(),
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
+          actions: <Widget>[
+            MaterialButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
 
 class projects extends StatefulWidget {
   const projects({super.key});
@@ -13,9 +66,14 @@ class projects extends StatefulWidget {
 }
 
 Future<List> getData() async {
-  final response =
-      await http.get(Uri.parse('http://localhost:5000/api/projects'));
-  data = json.decode(response.body);
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  var user = auth.currentUser;
+  if (user != null) {
+    var url = "https://backendmobile-tje6.onrender.com/api/projects";
+    url = url + "/" + user.uid;
+    final response = await http.get(Uri.parse(url));
+    data = json.decode(response.body);
+  }
   return data;
 }
 
@@ -27,7 +85,7 @@ class _projects extends State<projects> {
       builder: ((context, snapshot) {
         if (snapshot.data == null) {
           return Center(
-            child: const CircularProgressIndicator(),
+            child: Center(child: Text("No Project Founds!")),
           );
         } else {
           return ListView.builder(
@@ -83,6 +141,26 @@ Widget BuildCard(BuildContext context, int index) {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 290),
+                child: PopupMenuButton(
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(
+                        value: 'delete',
+                        child: const Text(
+                          'Delete',
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                        onTap: () {
+                          var taskId = (data[index]["id"]);
+                          DeleteProject(context, taskId);
+                        },
+                      ),
+                    ];
+                  },
+                ),
+              ),
               Center(
                 child: Text(
                   data[index]["title"],
@@ -112,7 +190,7 @@ Widget BuildCard(BuildContext context, int index) {
                     children: [
                       Center(
                         child: Text(
-                          'Date_Debut',
+                          '${data[index]["start_date"]}  -  ',
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Avenir',
@@ -123,7 +201,7 @@ Widget BuildCard(BuildContext context, int index) {
                       const SizedBox(width: 10),
                       Center(
                         child: Text(
-                          'Date_Fin',
+                          data[index]["end_date"],
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Avenir',
