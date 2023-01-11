@@ -1,8 +1,5 @@
 import 'package:collabapp/screens/AuthPage/AuthPage.dart';
 import 'package:collabapp/screens/Home/home.dart';
-import 'package:collabapp/screens/OTP/Verification_otp.dart';
-import 'package:collabapp/screens/OTP/function.dart';
-import 'package:collabapp/screens/OTP/phone_otp.dart';
 import 'package:collabapp/screens/Onboarding/onboarding.dart';
 import 'package:collabapp/screens/Reminders/reminders.dart';
 import 'package:collabapp/screens/Splash/splashscreen.dart';

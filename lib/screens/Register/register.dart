@@ -1,3 +1,4 @@
+import 'package:collabapp/main.dart';
 import 'package:collabapp/screens/Home/home.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:collabapp/screens/utils/utils.dart';
-import 'package:collabapp/screens/OTP/phone_otp.dart';
 
 class Register extends StatefulWidget {
   final Function() onClickedSignIn;
@@ -195,7 +195,7 @@ class _Register extends State<Register> {
       final _auth = FirebaseAuth.instance;
 
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => Phone()));
+          .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
