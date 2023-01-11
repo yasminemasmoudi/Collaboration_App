@@ -1,3 +1,4 @@
+import 'package:collabapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:collabapp/resources/color_manager.dart';
@@ -12,6 +13,8 @@ class Logout extends StatefulWidget {
 
 class _Logout extends State<Logout> {
   String name="";
+  bool isLogin = false;
+  void toggle() => setState(() => isLogin = !isLogin);
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
@@ -112,7 +115,7 @@ class _Logout extends State<Logout> {
                             FirebaseAuth.instance.signOut();
                             Navigator.of(context).pushReplacement( //hedhi mta3 otp
                                 MaterialPageRoute(
-                                    builder: (context) => Login(onClickedSignUp: () {  },)));
+                                    builder: (context) => MyApp()));
                           },
                           // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                           style: ElevatedButton.styleFrom(
